@@ -25,6 +25,7 @@ guest_names = {
 "Jonna Wooton": 7,
 
 "John Bieniek": 8,
+"John Bieniek - Guest": 8,
 
 "Mary Bieniek": 9,
 "Joe Bieniek": 9,
@@ -245,6 +246,9 @@ guest_names = {
 "Doyle Hunsinger": 86,
 
 "Roman McDaniel": 87,
+
+"Ken McGowan": 88,
+"Joanne McGowan": 88,
 
 "cs50": 79,
 
