@@ -249,6 +249,8 @@ guest_names = {
 
 "Ken McGowan": 88,
 "Joanne McGowan": 88,
+"Kenny McGowan": 88,
+"Kaitlyn McGowan": 88,
 
 "cs50": 79,
 
