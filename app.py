@@ -85,64 +85,9 @@ def logout():
 # RSVP
 @app.route('/rsvp', methods=['POST'])
 def rsvp():
-    guest, name = get_current_guest()
-
-    if not guest:
-        return redirect(url_for('login', next='/rsvpage'))
-
-    raw_group = guest_names.get(name)
-
-    if isinstance(raw_group, list):
-        group_numbers = raw_group
-        is_multi_group = True
-    else:
-        group_numbers = [raw_group]
-        is_multi_group = False
-
-    group_members = Guest.query.filter(
-        Guest.name.in_(
-            [
-                g_name
-                for g_name, g_num in guest_names.items()
-                if (
-                    g_num in group_numbers
-                    if isinstance(g_num, int)
-                    else any(x in group_numbers for x in g_num)
-                )
-            ]
-        )
-    ).all()
-
-    for member in group_members:
-        suffix = member.name.replace(' ', '_')
-
-        wedding_rsvp = request.form.get(f"wedding_rsvp_{suffix}")
-        cocktail_rsvp = request.form.get(f"cocktail_rsvp_{suffix}")
-        song_request = request.form.get(f"song_request_{suffix}", "").strip().title()
-        dinner_option = request.form.get(f"dinner_option_{suffix}")
-
-        if wedding_rsvp:
-            member.wedding_rsvp = wedding_rsvp
-
-        if member.wedding_rsvp == "not_going":
-            member.cocktail_rsvp = "Not Attending"
-            member.song_request = None
-            member.dinner_option = "Not Attending"
-
-        else:
-            if cocktail_rsvp:
-                member.cocktail_rsvp = cocktail_rsvp
-
-            if song_request:
-                member.song_request = song_request
-
-            if not is_multi_group and dinner_option:
-                member.dinner_option = dinner_option
-
-    db.session.commit()
-
-    flash(f"Thanks {name}, your RSVP was updated!")
+    flash("RSVP submissions have closed. Please contact us if you need to make a change.")
     return redirect(url_for('rsvpage'))
+
 
 # Chatbot
 @app.route("/chat", methods=["POST"])
